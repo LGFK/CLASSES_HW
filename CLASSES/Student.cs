@@ -16,7 +16,10 @@ namespace CLASSES
         private int[][] marks = new int[3][];
         public Student() : this("NoName","NoName","NoName",0,"NoName")
         {
-
+            marks[0] = new int[20];
+            marks[1] = new int[10];
+            marks[2] = new int[30];
+           
         }
         public Student(string _name, string _lastName, string _patronymic, int _age, string _group)
         {
@@ -25,20 +28,15 @@ namespace CLASSES
             Patronymic = _patronymic;
             Age = _age;
             Group = _group;
+            marks[0] = new int[20];
+            marks[1] = new int[10];
+            marks[2] = new int[30];
         }
-        public void GetMark(int subj,int mark)
+        public void GetMark(int subj,int mark,int lesson_n)
         {
-            if (marks[subj] == null)
-            {
-                marks[subj] = new int[1];
-            }
-            else
-            {
-                int[] arrTmp = new int[marks[subj].Length + 1];
-                marks[subj].CopyTo(arrTmp, 0);
-                marks[subj] = arrTmp; 
-            }
-            marks[subj][marks[subj].Length - 1] = mark;
+            if (lesson_n < marks[subj].Length||subj>3||subj<0)
+                throw new IndexOutOfRangeException();
+            marks[subj][lesson_n] = mark;
         }
         public void Print()
         {
